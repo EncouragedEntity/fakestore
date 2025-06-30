@@ -26,12 +26,12 @@ export default React.memo<Props>(({ navigation }) => {
     <View style={styles.container}>
       <FlatList
         data={products}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(_, index) => index.toString()}
         renderItem={({ item }) => (
           <Tile.Product
-            image={item.image}
-            title={item.title}
-            price={item.price}
+            image={item?.image || ''}
+            title={item?.title || ''}
+            price={item?.price || 0}
             onPress={() => {
               console.log('Product pressed:', item.id);
             }}

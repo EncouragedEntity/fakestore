@@ -31,6 +31,7 @@ export default React.memo<Props>(({ navigation, route }) => {
       title: route.params?.product.title || "",
       price: String(route.params?.product.price || ""),
       description: route.params?.product.description || "",
+      image: 'https://picsum.photos/300/200'
     },
     validationSchema: schema,
     onSubmit: (values) => {

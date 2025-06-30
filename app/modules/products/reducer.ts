@@ -1,4 +1,4 @@
-import { createReducer } from 'app/storage/utilities';
+import { AsyncStorage, createReducer, persistReducer } from 'app/storage/utilities';
 import * as actions from './actions';
 import type { Product, State } from './types';
 
@@ -7,7 +7,7 @@ const initial = Object.seal<State>({
   data: [],
 });
 
-export default createReducer(initial, builder => {
+const reducer =  createReducer(initial, builder => {
   builder.addCase(actions.global.store.reset, () => initial);
 
   builder.addCase(actions.reduce.events, (state, { payload }) => ({
@@ -21,6 +21,10 @@ export default createReducer(initial, builder => {
       ...state,
       data: payload.data,
     });
+  });
 });
 
-});
+export default persistReducer({
+  key: 'products',
+  storage: AsyncStorage,
+}, reducer);

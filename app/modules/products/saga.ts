@@ -1,6 +1,5 @@
 import { all, call, put, select, takeLeading } from 'redux-saga/effects';
 import * as actions from './actions';
-import selectors from './selectors';
 import { Product } from './types';
 import Api, { HttpResponse } from 'app/services/api';
 
@@ -10,14 +9,14 @@ function* fetch(event: ReturnType<typeof actions.request.fetch>): any {
   try {
     yield put(actions.reduce.events('fetch', true));
 
-    type Response = HttpResponse<{
-      data: Array<Product>;
-    }>;
+    type Response = HttpResponse & { data: Array<Product> };
 
-    const response: Response = yield call(Api.get, 'products');
+    const response: Response  = yield call(Api.get, 'products');
 
-    console.log(response.data);
-    
+    if(response.status === 200) {
+      yield put(actions.reduce.data({ data: response.data }));
+      if (resolve) yield call(resolve, response.data);
+    }
   } catch ({ message }: any) {
     if (reject) yield call(reject, { message });
   } finally {

@@ -13,6 +13,11 @@ const ProductsNavigation: React.FC<RootStack<typeof routes.products.stack>> = Re
     <Stack.Navigator
       id={routes.products.stack}
       initialRouteName={routes.products.list}
+      screenOptions={{
+        headerShown: true,
+        headerTitleAlign: 'center',
+        headerTitle: 'Список товарів',
+      }}
     >
       <Stack.Screen
         name={routes.products.list}
@@ -44,6 +49,7 @@ export default React.forwardRef<NavigationRef, {}>((props, ref) => {
       <Stack.Navigator
         id={routes.root.stack}
         initialRouteName={routes.products.stack}
+        screenOptions={{ headerShown: false }}
       >
 
       <Stack.Screen

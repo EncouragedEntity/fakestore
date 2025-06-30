@@ -1,13 +1,49 @@
-import { ProductStack, routes } from "app/navigation";
 import React from "react";
-import { Text, View } from "react-native";
+import { FlatList, View } from "react-native";
+import { useDispatch, useSelector } from "app/storage/utilities";
+import { ProductStack, routes } from "app/navigation";
+import ProductsModule from "app/modules/products";
+import styles from './styles';
+import Tile from "app/components/Tile";
+import Button from "app/components/Button";
 
 type Props = ProductStack<typeof routes.products.list>;
 
-export default React.memo<Props>(() => {
+export default React.memo<Props>(({ navigation }) => {
+  const dispatch = useDispatch();
+
+  const products = useSelector(ProductsModule.getProducts);
+
+  React.useEffect(() => {
+    if(!products?.length) dispatch(ProductsModule.fetch());
+  });
+
+  const handleAddProduct = React.useCallback(() => {
+    navigation.navigate(routes.products.entity);
+  }, []);
+
   return (
-    <View>
-      <Text>Product List</Text>
+    <View style={styles.container}>
+      <FlatList
+        data={products}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <Tile.Product
+            image={item.image}
+            title={item.title}
+            price={item.price}
+            onPress={() => {
+              console.log('Product pressed:', item.id);
+            }}
+          />
+        )}
+      />
+
+      <Button.Filled
+        title='Додати товар'
+        onPress={handleAddProduct}
+        style={styles.button}
+      />
     </View>
   );
 });

@@ -5,11 +5,12 @@ import type {
 } from '@react-navigation/native';
 import type { StackScreenProps } from '@react-navigation/stack';
 import routes from './routes';
+import type { Product } from 'app/modules/products';
 
 export type ProductStackParams = {
   [routes.products.list]: undefined;
   [routes.products.details]: { id: string };
-  [routes.products.entity]: { id: string };
+  [routes.products.entity]?: { product: Partial<Product> };
 };
 
 export type RootStackParams = {

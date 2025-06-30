@@ -22,6 +22,10 @@ export default React.memo<Props>(({ navigation }) => {
     navigation.navigate(routes.products.entity);
   }, []);
 
+  const handleDetails = React.useCallback((id: number) => {
+    navigation.navigate(routes.products.details, { id });
+  }, []);
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -32,9 +36,7 @@ export default React.memo<Props>(({ navigation }) => {
             image={item?.image || ''}
             title={item?.title || ''}
             price={item?.price || 0}
-            onPress={() => {
-              console.log('Product pressed:', item.id);
-            }}
+            onPress={() => handleDetails(item?.id || 0)}
           />
         )}
         ListEmptyComponent={() => {

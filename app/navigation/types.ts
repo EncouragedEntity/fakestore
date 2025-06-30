@@ -9,7 +9,7 @@ import type { Product } from 'app/modules/products';
 
 export type ProductStackParams = {
   [routes.products.list]: undefined;
-  [routes.products.details]: { id: string };
+  [routes.products.details]: { id: number };
   [routes.products.entity]?: { product: Partial<Product> };
 };
 

@@ -30,6 +30,11 @@ const ProductsNavigation: React.FC<RootStack<typeof routes.products.stack>> = Re
        <Stack.Screen
         name={routes.products.details}
         component={Products.Details}
+        options={{
+          headerShown: true,
+          headerTitle: 'Деталі товару',
+          headerTitleAlign: 'center',
+        }}
       />
 
        <Stack.Screen

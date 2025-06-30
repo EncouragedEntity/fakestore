@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { useDispatch, useSelector } from "app/storage/utilities";
 import { ProductStack, routes } from "app/navigation";
 import ProductsModule from "app/modules/products";
@@ -37,6 +37,14 @@ export default React.memo<Props>(({ navigation }) => {
             }}
           />
         )}
+        ListEmptyComponent={() => {
+          return (
+            <View style={styles.empty}>
+              <Text>Список товарів порожній</Text>
+            </View>
+          );
+        }}
+        ListFooterComponent={() => <View style={styles.footer} />}
       />
 
       <Button.Filled

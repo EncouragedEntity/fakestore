@@ -10,4 +10,11 @@ export default StyleSheet.create({
     left: 16,
     right: 16,
   },
+  footer: {
+    marginBottom: 64,
+  },
+  empty: {
+    flex: 1,
+    alignItems: 'center',
+  },
 });

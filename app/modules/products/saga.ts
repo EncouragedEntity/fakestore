@@ -43,6 +43,14 @@ function* create(event: ReturnType<typeof actions.request.create>):any {
   try {
     yield put(actions.reduce.events('create', true, { ids: [product.id] }));
 
+    const response: HttpResponse = yield call(Api.post, 'products', product);
+
+    if (response.status === 201) {
+      if (resolve) yield call(resolve, product);
+    } else {
+      throw new Error('Failed to create product');
+    }
+
   } catch ({ message }: any) {
     if (reject) yield call(reject, { message });
   } finally {

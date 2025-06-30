@@ -14,14 +14,17 @@ const ProductsNavigation: React.FC<RootStack<typeof routes.products.stack>> = Re
       id={routes.products.stack}
       initialRouteName={routes.products.list}
       screenOptions={{
-        headerShown: true,
-        headerTitleAlign: 'center',
-        headerTitle: 'Список товарів',
+        headerShown: false,
       }}
     >
       <Stack.Screen
         name={routes.products.list}
         component={Products.List}
+        options={{
+          headerShown: true,
+          headerTitle: 'Список товарів',
+          headerTitleAlign: 'center',
+        }}
       />
 
        <Stack.Screen
@@ -32,6 +35,11 @@ const ProductsNavigation: React.FC<RootStack<typeof routes.products.stack>> = Re
        <Stack.Screen
         name={routes.products.entity}
         component={Products.Entity}
+        options={{
+          headerShown: true,
+          headerTitle: 'Створення товару',
+          headerTitleAlign: 'center',
+        }}
       />
     </Stack.Navigator>
   );

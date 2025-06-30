@@ -10,5 +10,5 @@ export interface Product {
 
 export interface State {
   events: { [key: string]: boolean; };
-  data: Array<Product>;
+  data: Array<Partial<Product>>;
 }

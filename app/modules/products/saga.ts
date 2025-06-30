@@ -43,10 +43,13 @@ function* create(event: ReturnType<typeof actions.request.create>):any {
   try {
     yield put(actions.reduce.events('create', true, { ids: [product.id] }));
 
-    const response: HttpResponse = yield call(Api.post, 'products', product);
+    const response: HttpResponse & { data: Partial<Product> } = yield call(Api.post, 'products', product);
 
-    if (response.status === 201) {
-      if (resolve) yield call(resolve, product);
+    const products: Array<Product> = yield select((state: any) => state.products.data);
+
+    if (response.status === 200) {
+      yield put(actions.reduce.data({ data: [...products, response.data] }));
+      if (resolve) yield call(resolve, response.data);
     } else {
       throw new Error('Failed to create product');
     }

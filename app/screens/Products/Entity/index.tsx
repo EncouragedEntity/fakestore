@@ -60,7 +60,7 @@ export default React.memo<Props>(({ navigation, route }) => {
         keyboardShouldPersistTaps="handled"
       >
         <Input.Text
-          label="Title"
+          label="Назва"
           onChangeText={form.handleChange("title")}
           onBlur={form.handleBlur("title")}
           error={form.errors.title}
@@ -68,7 +68,7 @@ export default React.memo<Props>(({ navigation, route }) => {
         />
 
         <Input.Text
-          label="Description"
+          label="Опис"
           onChangeText={form.handleChange("description")}
           onBlur={form.handleBlur("description")}
           error={form.errors.description}
@@ -77,7 +77,7 @@ export default React.memo<Props>(({ navigation, route }) => {
         />
 
         <Input.Text
-          label="Price"
+          label="Ціна"
           onChangeText={form.handleChange("price")}
           onBlur={form.handleBlur("price")}
           error={form.errors.price}
@@ -91,7 +91,7 @@ export default React.memo<Props>(({ navigation, route }) => {
         <View style={{ flex: 1 }} />
 
         <Button.Filled
-          title="Створити"
+          title="Додати товар"
           onPress={form.handleSubmit as any}
           disabled={!form.isValid || form.isSubmitting}
           style={styles.submit}

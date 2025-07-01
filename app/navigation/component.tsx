@@ -42,7 +42,7 @@ const ProductsNavigation: React.FC<RootStack<typeof routes.products.stack>> = Re
         component={Products.Entity}
         options={{
           headerShown: true,
-          headerTitle: 'Створення товару',
+          headerTitle: 'Додати товар',
           headerTitleAlign: 'center',
         }}
       />

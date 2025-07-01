@@ -8,9 +8,7 @@ export default StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 300,
-    resizeMode: 'cover',
-    backgroundColor: '#eee',
+    height: '40%',
   },
   infoContainer: {
     padding: 16,

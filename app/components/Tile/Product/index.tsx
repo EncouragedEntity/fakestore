@@ -1,6 +1,7 @@
 import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
+import FastImage from "react-native-fast-image";
 type Props = {
   image: string;
   title: string;
@@ -13,7 +14,11 @@ export default React.memo<Props>(props => {
 
   return (
      <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.8}>
-      <Image source={{ uri: image }} style={styles.image} />
+      <FastImage
+        style={styles.image}
+        source={{ uri: image }}
+        resizeMode={FastImage.resizeMode.contain}
+      />
 
       <View style={styles.info}>
         <Text style={styles.title} numberOfLines={2}>{title}</Text>

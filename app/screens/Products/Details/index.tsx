@@ -1,9 +1,10 @@
 import React from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import styles from './styles';
 import { ProductStack, routes } from "app/navigation";
 import { useSelector } from "app/storage/utilities";
 import ProductsModule from "app/modules/products";
+import FastImage from "react-native-fast-image";
 
 type Props = ProductStack<typeof routes.products.details>;
 
@@ -15,7 +16,11 @@ export default React.memo<Props>(({ route }) => {
 
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        <Image source={{ uri: product?.image }} style={styles.image} />
+        <FastImage
+          source={{ uri: product?.image }}
+          style={styles.image}
+          resizeMode={FastImage.resizeMode.contain}
+        />
 
         <View style={styles.infoContainer}>
           <Text style={styles.category}>{product?.category?.toUpperCase()}</Text>

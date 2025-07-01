@@ -17,11 +17,11 @@ export type RootStackParams = {
   [routes.products.stack]: NavigatorScreenParams<ProductStackParams>;
 };
 
-export type ProductStack<T extends keyof ProductStackParams> = CompositeScreenProps<
+export type ProductStack<T extends keyof ProductStackParams = keyof ProductStackParams> = CompositeScreenProps<
   StackScreenProps<ProductStackParams, T>,
   StackScreenProps<RootStackParams>
 >;
 
-export type RootStack<T extends keyof RootStackParams> = StackScreenProps<RootStackParams, T>;
+export type RootStack<T extends keyof RootStackParams = keyof RootStackParams> = StackScreenProps<RootStackParams, T>;
 
 export type NavigationRef = NavigationContainerRef<RootStackParams>;
